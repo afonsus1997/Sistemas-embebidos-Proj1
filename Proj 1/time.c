@@ -12,7 +12,8 @@ char mode = 0b00;
 unsigned int temp = 23;
 
 void updateTemp(int RxTemp){
-    temp = (RxTemp>>7)>>1;
+    if(RxTemp!=0)
+        temp = (RxTemp>>7)>>1;
 }
 
 
@@ -49,11 +50,13 @@ void showTime(void){
 void printTemp(){
     int _temp = temp;
 
-    WRITE_DISPLAY(3, _temp % 10);
+    WRITE_DISPLAY(2, _temp % 10);
     _temp /= 10;
-    WRITE_DISPLAY(1, _temp % 10);
+    WRITE_DISPLAY(0, _temp % 10);
     _temp /= 10;
 
+    WRITE_DISPLAY(1,0);
+    WRITE_DISPLAY(3,0);
 }
 
 void init_Timer(){
@@ -80,18 +83,6 @@ void init_Timer(){
     }
 }
 
-
-void print_Temperature(unsigned int RxWord){
-    unsigned int temp, MSB, LSB;
-
-    temp = (RxWord>>7)>>1;
-    LSB = temp%10;
-    temp = temp/10;
-    MSB = temp%10;
-
-    WRITE_DISPLAY(0,MSB);
-    WRITE_DISPLAY(1,LSB);
-}
 
 
 

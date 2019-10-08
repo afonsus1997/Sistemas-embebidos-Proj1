@@ -94,7 +94,7 @@ void main(void)
     long i;
     volatile unsigned int j;
     GPIO_INIT();
-    //I2C_INIT();
+    I2C_INIT();
     init_Date_Time();
     while(1){
         i = KEYBOARD_BOUNCE_TIME;
@@ -102,10 +102,9 @@ void main(void)
         handleKeyboard(scan_keyboard());
 
         updateTemp(RxWord);
-        //__disable_interrupt();
+
         RxByteCtr = 2;                          // Load RX byte counter
         UCB0CTL1 |= UCTXSTT;                    // I2C start condition
-        __bis_SR_register(GIE);
 
 
     }
