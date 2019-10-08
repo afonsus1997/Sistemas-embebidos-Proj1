@@ -12,7 +12,7 @@ char scan_keyboard(){
     int i = KEYBOARD_SCAN_TIME;
     for(i;i>=0;i--){
          keyboard_mask |= (P1IN >> 3)&1;
-         //keyboard_mask |= (((P2IN >> 7)&1)<<1);
+         keyboard_mask |= (((P2IN >> 6)&1)<<1);
     }
     return keyboard_mask;
 }

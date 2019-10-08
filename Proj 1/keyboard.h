@@ -10,7 +10,7 @@
 
 #include <msp430.h>
 
-#define KEYBOARD_SCAN_TIME 10000
+#define KEYBOARD_SCAN_TIME 100
 
 char scan_keyboard();
 
